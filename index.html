@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Note Reminder Bot</title>
+    <style>
+        body { font-family: Arial; background: #f4f4f4; text-align: center; padding: 20px; }
+        h1 { color: #444; }
+        input[type=text] { padding: 10px; width: 300px; }
+        button { padding: 10px 15px; }
+        .reminder-list { margin-top: 20px; }
+        .reminder { background: #fff; padding: 10px; margin: 10px auto; width: 350px; border-radius: 8px; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+    <h1>📝 Smart Note Reminder Bot</h1>
+
+    <form method="POST">
+        <input type="text" name="reminder" placeholder="Enter your reminder..." required>
+        <button type="submit">Add Reminder</button>
+    </form>
+
+    <div class="reminder-list">
+        {% if reminders %}
+            <h3>🔔 Your Reminders:</h3>
+            {% for item in reminders %}
+                <div class="reminder">
+                    <strong>{{ item.reminder }}</strong><br>
+                    <small>Added on: {{ item.time }}</small>
+                </div>
+            {% endfor %}
+            <a href="/clear"><button>Clear All</button></a>
+        {% else %}
+            <p>No reminders yet.</p>
+        {% endif %}
+    </div>
+</body>
+</html>
